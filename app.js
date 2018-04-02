@@ -26,7 +26,7 @@ client.on("message", async message => {
 
   if(command == "help"){
     // bot returns help info 
-    message.channel.send("**Available Commands:**\n \n`!block` - Current block height \n`!halve` - Days to block reward halving \n`!diff` - Current block difficulty \n`!nethash` - Current network hashrate")
+    message.channel.send("**Available Commands:**\n \n`!reward` - Current Block Reward \n`!block` - Current block height \n`!halve` - Days to block reward halving \n`!diff` - Current block difficulty \n`!nethash` - Current network hashrate")
   }
 
   if(command == "block"){
@@ -36,7 +36,7 @@ client.on("message", async message => {
         throw error;
     }
     mininginfo = JSON.parse(data);
-    message.channel.send("Current block is "+ mininginfo.blocks) 
+    message.channel.send("**Beep Boop - Boop Beep** \n \n Current block is **" + mininginfo.blocks + "**") 
     });
   }
   
@@ -47,7 +47,7 @@ client.on("message", async message => {
         throw error;
     }
     mininginfo = JSON.parse(data);
-    message.channel.send(((123840 - (mininginfo.blocks % 123840)) / (24*60)).toFixed(2) + " days left until block reward halving")
+    message.channel.send("**Beep Boop - Boop Beep** \n \n**" + ((123840 - (mininginfo.blocks % 123840)) / (24*60)).toFixed(2) + "** days left until block reward halving")
     });
   }
   
@@ -58,7 +58,7 @@ client.on("message", async message => {
         throw error;
     }
     mininginfo = JSON.parse(data);
-    message.channel.send("Current difficulty is "+ mininginfo.difficulty)
+    message.channel.send("**Beep Boop - Boop Beep** \n \n Current difficulty is **"+ mininginfo.difficulty + "**")
     });
   }
   
@@ -69,9 +69,23 @@ client.on("message", async message => {
         throw error;
     }
     mininginfo = JSON.parse(data);
-    message.channel.send("Current network hash is "+ mininginfo.networkhashps / 1000 +" ksol/s")
+    message.channel.send("**Beep Boop - Boop Beep** \n \n Current network hash is **"+ mininginfo.networkhashps / 1000 +"** ksol/s")
     });
   }
+
+  
+  if(command == "reward"){
+    // return block reward
+    fs.readFile('./mininginfo.json', 'utf8', function(error, data) {
+    if (error){
+        throw error;
+    }
+   // mininginfo = JSON.parse(data);
+    message.channel.send("**Beep Boop - Boop Beep** \n \n Current block reward is **128** SAFE")
+    });
+  }
+
+// have some fun
 
   if(command == "lambo"){
     // when lambo
@@ -81,6 +95,28 @@ client.on("message", async message => {
     }
    // mininginfo = JSON.parse(data);
     message.channel.send("**Beep Boop - Boop Beep** \n \n To lambo, one must hodl.")
+    });
+  }
+
+  if(command == "beer"){
+    // we don't always mine coins, but when we do
+    fs.readFile('./mininginfo.json', 'utf8', function(error, data) {
+    if (error){
+        throw error;
+    }
+   // mininginfo = JSON.parse(data);
+    message.channel.send("**Beep Boop - Boop Beep** \n \n The most interesting coin in the world.")
+    });
+  }
+
+  if(command == "hodl"){
+    // to be SAFE in times of trouble
+    fs.readFile('./mininginfo.json', 'utf8', function(error, data) {
+    if (error){
+        throw error;
+    }
+   // mininginfo = JSON.parse(data);
+    message.channel.send("**Beep Boop - Boop Beep** \n \n Be **SAFE**, be a hodler.")
     });
   }
 
