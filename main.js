@@ -27,6 +27,7 @@ function parseMessage(msg, sender, msgObj) {
             if (msg.length == 2 ) {
 		if (pool(msg[1]) == false ) {
 		    msgObj.reply("I wanted to send a personal message, but there was no useful information. You made a mistake when entering the command. Go back and fix everything!");
+//                    msgObj.author.send(pool(msg[1]));
 		} else {
                     msgObj.author.send(pool(msg[1]));
 	            msgObj.reply("I sent you a personal message.");
@@ -61,6 +62,16 @@ function parseMessage(msg, sender, msgObj) {
 	case "ище":
             if (msg.length == 1) {
                 msgObj.reply("**I'm here!**");
+        	break;
+            } 
+	case "moon":
+            if (msg.length == 1) {
+                msgObj.reply("**is soon!**");
+        	break;
+            } 
+	case "ьщщт":
+            if (msg.length == 1) {
+                msgObj.reply(" Поставь себе Punto Switcher :)");
         	break;
             } 
 
@@ -119,7 +130,7 @@ function parseMessage(msg, sender, msgObj) {
 	    	        throw error;
 		    }
 		    mininginfo = JSON.parse(data);
-                    msgObj.reply("Current network hash is **"+ mininginfo.networkhashps / 1000 +" kSol/s**");
+                    msgObj.reply("Current network hash is **"+ mininginfo.networkhashps / 1000 +"** kSol/s");
 	        });
             break;
             } 
@@ -128,7 +139,6 @@ function parseMessage(msg, sender, msgObj) {
             msgObj.reply("Command not recognized. \"!help\" to get a list of commands or edit your last message.");
     }
 }
-
 function recognizeMessage(msg) {
     if (msg.content.toLowerCase().substr(0, 1) !== prefix) {
         return;
