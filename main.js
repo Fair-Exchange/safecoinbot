@@ -25,10 +25,12 @@ function parseMessage(msg, sender, msgObj) {
         case "help": // help
         case "рудз": // rus typo wrong keybord "help"
             if (msg.length == 2) { // is there arguments?
-                msgObj.reply(help(msg[1])); // yes - reply answer from module.export form file data.js input is help(msg[0]) - line 249-> 250-254 data.js
+                msgObj.reply(" I sent you a personal message.");
+                msgObj.author.send(help(msg[1])); // yes - reply answer from module.export form file data.js input is help(msg[0]) - line 249-> 250-254 data.js
         	break;
             } else if (msg.length == 1) {
-                msgObj.reply(help()); //line 249 -->255 data.js
+                msgObj.reply(" I sent you a personal message.");
+                msgObj.author.send(help()); //line 249 -->255 data.js
                 break;
             }
 
@@ -113,15 +115,15 @@ function parseMessage(msg, sender, msgObj) {
 
 //----
 //----new command with one parametr. shud bee before default in this section
-	case "joke": //command
-	case "jokes"://a synonym if necessary
-	case "ощлу": //a synonym at wrong russian keyboar layot (it's convenient for us)
-            if (msg.length == 1) { //chech length command=1
-                msgObj.reply(" Current block reward is **128** SAFE");//reply with mention
-                msgObj.channel.send(" Current block reward is **128** SAFE");//send text without mention
-                msgObj.author.send(" Current block reward is **128** SAFE");// replay DM
-        	break; //exit function parseMessage(msg, sender, msgObj)
-            } //
+//	case "joke": //command
+//	case "jokes"://a synonym if necessary
+//	case "ощлу": //a synonym at wrong russian keyboar layot (it's convenient for us)
+//            if (msg.length == 1) { //chech length command=1
+//                msgObj.reply(" Current block reward is **128** SAFE");//reply with mention
+//                msgObj.channel.send(" Current block reward is **128** SAFE");//send text without mention
+//                msgObj.author.send(" Current block reward is **128** SAFE");// replay DM
+//        	break; //exit function parseMessage(msg, sender, msgObj)
+//            } //
 //-----end new command
 
 //----
