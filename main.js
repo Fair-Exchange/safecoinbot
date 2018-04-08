@@ -25,11 +25,15 @@ function parseMessage(msg, sender, msgObj) {
         case "help": // help
         case "рудз": // rus typo wrong keybord "help"
             if (msg.length == 2) { // is there arguments?
+	    if (msgObj.channel.type != "dm"){
                 msgObj.reply(" I sent you a personal message.");
+    	    }
                 msgObj.author.send(help(msg[1])); // yes - reply answer from module.export form file data.js input is help(msg[0]) - line 249-> 250-254 data.js
         	break;
             } else if (msg.length == 1) {
+        if (msgObj.channel.type != "dm"){
                 msgObj.reply(" I sent you a personal message.");
+	    }
                 msgObj.author.send(help()); //line 249 -->255 data.js
                 break;
             }
@@ -42,12 +46,16 @@ function parseMessage(msg, sender, msgObj) {
 		    msgObj.reply(" I wanted to send a personal message, but there was no useful information. You made a mistake when entering the command. Go back and fix it!");
 		} else {
                     msgObj.author.send(pool(msg[1]));
-	            msgObj.reply(" I sent you a personal message.");
+		    if (msgObj.channel.type != "dm"){
+		        msgObj.reply(" I sent you a personal message.");
+    	    	    }    
 		}
         	break;
             } else if (msg.length == 1) {
                 msgObj.author.send(pool());
-                msgObj.reply(" I sent you a personal message.");
+		if (msgObj.channel.type != "dm"){
+    	    	    msgObj.reply(" I sent you a personal message.");
+		}
         	break;
 	    }
 
@@ -56,7 +64,9 @@ function parseMessage(msg, sender, msgObj) {
         case "дштлы":
             if (msg.length == 1) {
                 msgObj.author.send(links());
-                msgObj.reply(" I sent you a personal message.");
+		if (msgObj.channel.type != "dm"){
+            	    msgObj.reply(" I sent you a personal message.");
+		}
         	break;
             } 
 
@@ -138,7 +148,7 @@ function parseMessage(msg, sender, msgObj) {
 		        mininginfo = JSON.parse(data);
                 	msgObj.reply(" Current block is **"+ mininginfo.blocks +"**");
 		    } else {
-			msgObj.reply(" data is not available.")
+			msgObj.reply(" Data is not available.")
 		    }
 	        });
                 break;
@@ -156,7 +166,7 @@ function parseMessage(msg, sender, msgObj) {
 			mininginfo = JSON.parse(data);
                 	msgObj.reply(" **"+((123840 - (mininginfo.blocks % 123840)) / (24*60)).toFixed(2) + "** days left until block reward halving");
 		    } else {
-			msgObj.reply(" data is not available.")
+			msgObj.reply(" Data is not available.")
 		    }
 	        });
                 break;
@@ -174,7 +184,7 @@ function parseMessage(msg, sender, msgObj) {
 			mininginfo = JSON.parse(data);
                 	msgObj.reply(" Current difficulty is **"+ Math.round(1000*(mininginfo.difficulty))/1000+"**");
 		    } else {
-			msgObj.reply(" data is not available.")
+			msgObj.reply(" Data is not available.")
 		    }
 	        });
                 break;
@@ -192,7 +202,7 @@ function parseMessage(msg, sender, msgObj) {
 			mininginfo = JSON.parse(data);
                 	msgObj.reply(" Current network hash is **"+ mininginfo.networkhashps / 1000 +"** kSol/s.");
 		    } else {
-			msgObj.reply(" data is not available.")
+			msgObj.reply(" Data is not available.")
 		    }
 		});
                 break;
@@ -207,9 +217,9 @@ function parseMessage(msg, sender, msgObj) {
 		    }
 		    if (IsJsonString(data)) { 
 			mininginfo = JSON.parse(data);
-                	msgObj.reply(" Network hash is about **"+ mininginfo.networkhashps / 1000 +" kSol/s.**\nWith your hashrate **"+Number(msg[1])+" Sol/s**  you will get approximate **"+Math.round(100*(Number(msg[1]) / mininginfo.networkhashps) * 128 * 60) / 100 + " SAFE** per **hour** and **" +Math.round(100*(Number(msg[1]) / mininginfo.networkhashps) * 128 * 1440) / 100  + " SAFE** per **day** at current network difficulty.\nThe further - the more difficult.");
+                	msgObj.reply(" Network hash is about **"+ mininginfo.networkhashps / 1000 +" kSol/s.**\nWith your hashrate **"+Number(msg[1])+" Sol/s**  you will get approximate **"+Math.round(100*(Number(msg[1]) / mininginfo.networkhashps) * 128 * 60) / 100 + " SAFE** per **hour** and **" +Math.round(100*(Number(msg[1]) / mininginfo.networkhashps) * 128 * 1440) / 100  + " SAFE** per **day** at current network difficulty.");
     		    } else {
-			msgObj.reply(" data is not available.")
+			msgObj.reply(" Data is not available.")
 		    }
 		});
 		break;
