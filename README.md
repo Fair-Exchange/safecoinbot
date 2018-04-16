@@ -41,7 +41,7 @@ npm init
 
 npm install discord.js
 
-nohup node app.js &
+nohup node main.js &
 ```
 
 ## Invite bot to server
